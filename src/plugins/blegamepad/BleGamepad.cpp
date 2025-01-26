@@ -8,16 +8,24 @@
 #include <BLEDevice.h>
 #include "BleConfig.h"
 
-//void blegamepadWrapper() { blegamepad.loop(); }
+void blegamepadWrapper() { blegamepad.loop(); }
 
 void BleGamepad::init() {
   VLF("MSG: Plugins, starting: BleGamepad");
   bleInit();
   bleSetup();
 
+    // allow time for the background servers to come up
+  delay(2000);
+
+  if (status.onStepFound) {
+    status.update();
+    delay(100);
+  }
+
   // start a task that runs twice a second, run at priority level 7 so
   // we can block using tasks.yield(); fairly aggressively without significant impact on operation
-  //tasks.add(500, 0, true, 7, blegamepadWrapper);
+  tasks.add(500, 0, true, 7, blegamepadWrapper);
 }
 
 void BleGamepad::loop() {
@@ -446,6 +454,7 @@ void BleGamepad::loop() {
     //******************************************************************************
     bool connectToServer()
     {
+      VLF("bleMSG: connectToServer");
       if (pClient == NULL) pClient = BLEDevice::createClient();
       pClient->setClientCallbacks(new MyClientCallback());
 
@@ -461,12 +470,13 @@ void BleGamepad::loop() {
                                                     // it will be recognized type of peer device address (public or private)
       if(_connected)   
       {
-        // VLF("bleMSG: bleMSG: BLE says it is connected");   
+        VLF("bleMSG: BLE says it is connected");   
         // pClient->setMTU(112); //set client to new MTU from server (default is 23 otherwise)     
       }
 
       if(!_connected)
       {
+        VLF("bleMSG: BLE says it is NOT connected");
         delete pClient;
         delete myDevice;
         return false;
@@ -875,6 +885,7 @@ void BleGamepad::loop() {
 
     void BleGamepad::bleInit()
     {
+      VLF("bleMSG: bleInit");
       // Enable BT ble only (no classic)
       esp_bt_controller_enable(ESP_BT_MODE_BLE);
       // Free memory used by BT Classic to prevent out of memory crash
@@ -900,7 +911,7 @@ void BleGamepad::loop() {
       
         // Restart the scan timer
         scanTimer = millis() + SCANTIMER;
-        VLF("bleMSG: bleMSG: Scanning for BLE GamePad");
+        VLF("bleMSG: Scanning for BLE GamePad");
       }
     }
     // End of DoScan.
@@ -913,6 +924,7 @@ void BleGamepad::loop() {
       // If the flag "doConnect" is true then we have scanned for and found the desired
       // BLE Server with which we wish to connect.  Now we connect to it.
 
+      //VLF("bleMSG: bleConnTest");
       if (doConnect == true) connectToServer(); 
       else
       {
@@ -925,6 +937,7 @@ void BleGamepad::loop() {
 
     void BleGamepad::bleSetup()
     {
+      VLF("bleMSG: bleSetup");
       My_BLE_Address = BLE_GP_ADDR;
       My_BLE_Address1 = BLE_GP_ADDR1;
       MTimer = 0;  
@@ -962,6 +975,7 @@ void BleGamepad::loop() {
 
       if (!connected)
       {
+        VLF("bleMSG: !connected, scan");
         // Retrieve a GATT Scanner and set the callback we want to use to be informed 
         // when we have detected a new device.  Specify that we want active scanning
         // and start the scan.
@@ -977,6 +991,7 @@ void BleGamepad::loop() {
 
       if (!connected)
       {
+        VLF("bleMSG: !connected, restart scan timer");
         doScan = true;
         scanTimer = millis() + SCANTIMER; // Restart the scan timer
       }
