@@ -1203,13 +1203,13 @@ void BleGamepad::loop() {
     // ------ LED functions -----
     void LED_STATE_A()
     {
-      if (LED_ENABLE == ON) digitalWrite(LED_STATUS_PIN, LED_STATUS_OFF_STATE);
-      else if (LED_ENABLE == REV) digitalWrite(LED_STATUS_PIN, LED_STATUS_ON_STATE);
+      //if (LED_ENABLE == ON) digitalWrite(LED_STATUS_PIN, LED_STATUS_OFF_STATE);
+      //else if (LED_ENABLE == REV) digitalWrite(LED_STATUS_PIN, LED_STATUS_ON_STATE);
     }
     void LED_STATE_B()
     {
-      if (LED_ENABLE == ON) digitalWrite(LED_STATUS_PIN, LED_STATUS_ON_STATE);
-      else if (LED_ENABLE == REV) digitalWrite(LED_STATUS_PIN, LED_STATUS_OFF_STATE);
+      //if (LED_ENABLE == ON) digitalWrite(LED_STATUS_PIN, LED_STATUS_ON_STATE);
+      //else if (LED_ENABLE == REV) digitalWrite(LED_STATUS_PIN, LED_STATUS_OFF_STATE);
     }
   
     // ------ Sound functions -----

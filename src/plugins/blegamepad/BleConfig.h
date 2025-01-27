@@ -7,7 +7,7 @@
 
   // BLE GAMEPAD SETTINGS (ESP32 ONLY) ------------------------------------------------ see https://onstep.groups.io/g/main/wiki/26762
   #define BLE_GAMEPAD                   ON //    OFF, ON to allow BLE gamepad connection for ESP32 only.                       Option
-  #define BLE_GP_ADDR   "ff:ff:de:09:f5:cf" // f5:cf", GamePad MAC address #1                                                   Adjust
+  #define BLE_GP_ADDR   "ff:24:08:05:21:2d" // f5:cf", GamePad MAC address #1                                                   Adjust
                                             //         GamePad device address must match exactly else it will not connect!
                                             //         Replace address with yours, in lower case, with colons as shown.
   #define BLE_GP_ADDR1  "ff:ff:ff:ff:ff:ff" // ff:ff", GamePad MAC address #2                                                   Adjust
@@ -34,7 +34,7 @@
   #define INIT_ALIGN            ON      // ON, Enables M button align from "At Home" (startup) with 3 
                                         // star alignment (see ALIGNSTARS to change number of stars) 
 
-  #define MODE_D               OFF      // OFF, uses Mode B, ON use Mode D for GamePad if it supports it.   
+  #define MODE_D               ON      // OFF, uses Mode B, ON use Mode D for GamePad if it supports it.   
                                         // V2.0 code for backward compatabilty.
   
   #define M_SINGLE_CLICK       OFF      // OFF, ON, M button will activate on a single click as in  
