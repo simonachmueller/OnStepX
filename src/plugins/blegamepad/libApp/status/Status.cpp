@@ -4,11 +4,7 @@
 #include <Arduino.h>
 
 #include "../../../../lib/debug/Debug.h"
-
-//#include "../../Constants.h"
 #include "../../Config.h"
-
-//#include "../../locales/Locale.h"
 #include "../cmd/Cmd.h"
 
 #include "Status.h"
@@ -243,27 +239,5 @@ bool Status::auxiliaryScan() {
   }
   return true;
 }
-
-// bool Status::getLastErrorMessage(char message[]) {
-//   strcpy(message,"");
-//   if (lastError == ERR_NONE) strcpy(message, L_GE_NONE); else
-//   if (lastError == ERR_MOTOR_FAULT) strcpy(message, L_GE_MOTOR_FAULT); else
-//   if (lastError == ERR_ALT_MIN) strcpy(message, L_GE_ALT_MIN); else
-//   if (lastError == ERR_LIMIT_SENSE) strcpy(message, L_GE_LIMIT_SENSE); else
-//   if (lastError == ERR_DEC) strcpy(message, L_GE_DEC); else
-//   if (lastError == ERR_AZM) strcpy(message, L_GE_AZM); else
-//   if (lastError == ERR_UNDER_POLE) strcpy(message, L_GE_UNDER_POLE); else
-//   if (lastError == ERR_MERIDIAN) strcpy(message, L_GE_MERIDIAN); else
-//   if (lastError == ERR_SYNC) strcpy(message, L_GE_SYNC); else
-//   if (lastError == ERR_PARK) strcpy(message, L_GE_PARK); else
-//   if (lastError == ERR_GOTO_SYNC) strcpy(message, L_GE_GOTO_SYNC); else
-//   if (lastError == ERR_UNSPECIFIED) strcpy(message, L_GE_UNSPECIFIED); else
-//   if (lastError == ERR_ALT_MAX) strcpy(message, L_GE_ALT_MAX); else
-//   if (lastError == ERR_WEATHER_INIT) strcpy(message, L_GE_WEATHER_INIT); else
-//   if (lastError == ERR_SITE_INIT) strcpy(message, L_GE_SITE_INIT); else
-//   if (lastError == ERR_NV_INIT) strcpy(message, L_GE_NV_INIT); else
-//   sprintf(message, L_GE_OTHER " %d", (int)lastError);
-//   return message[0];
-// }
 
 Status status;
